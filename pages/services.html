@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Services - Black Sea Shipping Company</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+/* Modern CSS Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a4d7a;
+    --secondary-color: #2c5f8d;
+    --accent-color: #3a7ca5;
+    --dark-color: #0d2538;
+    --light-color: #f4f7f9;
+    --text-color: #333;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+/* Header Styles */
+.header-wrapper {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInLeft 0.8s ease;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: var(--transition);
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-container h1 {
+    color: var(--white);
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.contact-info {
+    display: flex;
+    gap: 30px;
+    animation: fadeInRight 0.8s ease;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.contact-item {
+    color: var(--white);
+    text-align: right;
+}
+
+.contact-item strong {
+    display: block;
+    font-size: 0.85em;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+/* Navigation Styles */
+.nav-wrapper {
+    background: var(--dark-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    padding: 18px 25px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 3px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+nav ul li a:hover,
+nav ul li.active a {
+    background: rgba(255,255,255,0.1);
+    color: var(--accent-color);
+}
+
+nav ul li a:hover::after,
+nav ul li.active a::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Dropdown Menu */
+nav ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--dark-color);
+    min-width: 250px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border-radius: 0 0 8px 8px;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav ul li:hover > ul {
+    display: flex;
+}
+
+nav ul li ul li a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul li ul li:last-child a {
+    border-bottom: none;
+}
+
+/* Page Header Section */
+.page-header {
+    position: relative;
+    padding: 80px 0;
+    text-align: center;
+    overflow: hidden;
+    height: 300px;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/demo/02.jpg') center/cover;
+    animation: zoomBackground 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes zoomBackground {
+    0%, 100% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-section {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.content-section h1 {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+    font-style: italic;
+}
+
+.content-section h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.intro-text {
+    margin-bottom: 30px;
+}
+
+.intro-text p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-size: 1.05em;
+    color: #555;
+}
+
+.intro-text strong {
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.intro-list {
+    list-style: none;
+    margin: 20px 0 40px 0;
+    padding: 0;
+}
+
+.intro-list li {
+    padding: 12px 0 12px 30px;
+    position: relative;
+    line-height: 1.8;
+    color: #555;
+    animation: slideInLeft 0.6s ease;
+    animation-fill-mode: both;
+}
+
+.intro-list li:nth-child(1) { animation-delay: 0.1s; }
+.intro-list li:nth-child(2) { animation-delay: 0.2s; }
+.intro-list li:nth-child(3) { animation-delay: 0.3s; }
+.intro-list li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.intro-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Services Section */
+.services-title {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin: 40px 0 30px 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.services-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-item {
+    margin-bottom: 30px;
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    animation: fadeInScale 0.8s ease;
+    animation-fill-mode: both;
+}
+
+.service-item:nth-child(1) { animation-delay: 0.1s; }
+.service-item:nth-child(2) { animation-delay: 0.2s; }
+.service-item:nth-child(3) { animation-delay: 0.3s; }
+.service-item:nth-child(4) { animation-delay: 0.4s; }
+.service-item:nth-child(5) { animation-delay: 0.5s; }
+.service-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    background: var(--white);
+}
+
+.service-item h3 {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.service-item h3::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 1.2em;
+}
+
+.service-item p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05em;
+}
+
+/* Footer */
+.footer-wrapper {
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+    color: var(--white);
+    padding: 60px 0 30px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h6 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.footer-section ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.footer-section a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
+
+.motto-text {
+    font-size: 1.6em;
+    font-style: italic;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.copyright {
+    background: rgba(0,0,0,0.3);
+    padding: 20px 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+}
+
+.copyright a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Back to Top Button */
+#backtotop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+}
+
+#backtotop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backtotop:hover {
+    background: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo-container h1 {
+        font-size: 1.3em;
+    }
+
+    .contact-info {
+        gap: 15px;
+        font-size: 0.9em;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 12px 20px;
+    }
+
+    .main-content {
+        padding: 0 20px;
+    }
+
+    .content-section {
+        padding: 20px;
+    }
+
+    .content-section h1 {
+        font-size: 1.8em;
+    }
+
+    .service-item {
+        padding: 20px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+</style>
+</head>
+<body id="top">
+
+<!-- Header -->
+<div class="header-wrapper">
+    <header>
+        <div class="logo-container">
+            <img src="../images/demo/11.png" alt="Black Sea Shipping Company Logo" class="logo-img">
+            <h1>Black Sea Shipping Company</h1>
+        </div>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Contact:</strong>
+                +44 2590 1842
+            </div>
+            <div class="contact-item">
+                <strong>Mobile:</strong>
+                +91 9940618251
+            </div>
+        </div>
+    </header>
+</div>
+
+<!-- Navigation -->
+<div class="nav-wrapper">
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li class="active"><a href="services.html">Services</a></li>
+            <li><a href="grcompany.html">GR Companies</a></li>
+            <li class="has-dropdown">
+                <a href="#">Container Track</a>
+                <ul>
+                    <li><a href="https://www.msc.com/track-a-shipment?agencyPath=ind">MSC CNTR track</a></li>
+                    <li><a href="https://www.maerskline.com/en/routes/track-shipments">Maerskline CNTR track</a></li>
+                    <li><a href="http://www.bltracking.com/container/tsl.html">TS lines CNTR track</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Resources</a>
+                <ul>
+                    <li><a href="https://www.oanda.com/currency/converter/">Currency Conversion</a></li>
+                    <li><a href="cntrspec.html">Container Specification</a></li>
+                </ul>
+            </li>
+            <li><a href="mailto:blackseashipco@gmail.com">Mail us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Page Header -->
+<div class="page-header"></div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="content-section">
+        <h1>Services</h1>
+        
+        <div class="intro-text">
+            <p>Black Sea Shipping Company is a well known Shipping, Clearing Freight Forwarding and Logistics company with head office in Chennai, branches/associates all over India and strong partner agents worldwide.</p>
+            
+            <p>We are Customs Broker and Multimodal Transport Operators (MTO) offering host of services to exporters and importers from various different industries. We offer complete door to door logistics services under one roof so that you don't need to deal with many parties usually involved in movement of cargo thus enabling you to concentrate on your core business activity.</p>
+            
+            <p><strong>Our range of services includes:</strong></p>
+            
+            <ul class="intro-list">
+                <li>International freight forwarding - Sea & Air (LCL consolidation, FCL services - import/export)</li>
+                <li>Custom Broker - customs clearance export/import shipment</li>
+                <li>Break bulk Services, project shipping and heavy lift cargo, vessel chartering</li>
+                <li>Door to Door services, transport services, total logistics solution</li>
+            </ul>
+            
+            <p>We provide an integrated range of transport services linking our international services with our trucks, trains and warehouses. When combined with our interstate road and rail services, container pack and unpack facilities, fumigation and cargo storage services, we can provide you with comprehensive logistics solutions across India.</p>
+        </div>
+        
+        <h2 class="services-title">Our Services</h2>
+        
+        <ul class="services-list">
+            <li class="service-item">
+                <h3>Ocean & Air Freight Forwarding</h3>
+                <p>We offer competitive export/import Ocean Freight for worldwide destinations as we have secured service contracts & preferential customer status with all the major ocean carriers. Our strong global agency network enables us to offer competitive FCL & LCL and air freight rates.</p>
+            </li>
+            
+            <li class="service-item">
+                <h3>Clearing Agent and Custom Clearance</h3>
+                <p>We also provide Custom clearance service of export and import shipments, with an experience of more than 20 years in custom clearance and allied services. Our expertise in custom regulations and our relations ensure that cargo is cleared on time without causing any delays and thus there is no unnecessary additional cost to the customer.</p>
+            </li>
+            
+            <li class="service-item">
+                <h3>Transportation</h3>
+                <p>Apart from Air and Sea transportation services, we also offer Road/Rail transportation services to our customers. Our transportation arm has fleet of owned & leased trucks & trailers to meet our customers' haulage needs.</p>
+            </li>
+            
+            <li class="service-item">
+                <h3>Warehousing, Distribution & Door2Door Services</h3>
+                <p>We have a network of strategically located warehouses for consolidating and safe storage of goods in transit under the care of our logistics control and inventory management team. They are well equipped with latest warehouse management systems and cargo moving & handling equipments.</p>
+            </li>
+            
+            <li class="service-item">
+                <h3>Logistics and Multimodal Transport</h3>
+                <p>Our reliable Door to Door integrated logistic services takes care of the entire international Logistic for our valued customers whereby we collect the cargo from the exporter's factory or warehouse and carry out the entire transportation process right up till the delivery to warehouse or factory of the buyer. The entire process involves Multimodal Transport operations that may involve some or all of the services like stuffing of cargo in containers, road haulage & custom clearance at both ends, sea transportation on mother vessel and feeder vessel, rail transportation and warehousing.</p>
+            </li>
+            
+            <li class="service-item">
+                <h3>Break Bulk, Project Cargo and Heavy Lift Cargo</h3>
+                <p>We offer project cargo and Break bulk cargo, be it the disassembly and relocation of machinery plant or any movement of very large or heavy equipment. We are best in large project logistics management. We have built up a team of highly skilled professionals to handle these types of break bulk cargoes.</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-wrapper">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h6>Be in touch with us</h6>
+            <ul>
+                <li>No-24, 'A' Block Classic Appartment, Cementry, Chennai-600 021.</li>
+                <li>Phone: 44 2590 1842</li>
+                <li>Email: <a href="mailto:blackseashipco@gmail.com">blackseashipco@gmail.com</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h6>Our Services</h6>
+            <ul>
+                <li><a href="#">Customs Brokers</a></li>
+                <li><a href="#">International Freight Forwards</a></li>
+                <li><a href="#">Logistics Services</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h6 class="motto-text">"Right People Right Choice"</h6>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>Copyright &copy; 2026 - All Rights Reserved - Black Sea Shipping Company | Site developed and maintained by Nancy Mary R</p>
+    </div>
+</div>
+
+<!-- Back to Top Button -->
+<a id="backtotop" href="#top">↑</a>
+
+<script>
+// Back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backtotop');
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>

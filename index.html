@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Black Sea Shipping Company</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+/* Modern CSS Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a4d7a;
+    --secondary-color: #2c5f8d;
+    --accent-color: #3a7ca5;
+    --dark-color: #0d2538;
+    --light-color: #f4f7f9;
+    --text-color: #333;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+/* Header Styles */
+.header-wrapper {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.6s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInLeft 0.8s ease;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: var(--transition);
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo-container h1 {
+    color: var(--white);
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.contact-info {
+    display: flex;
+    gap: 30px;
+    animation: fadeInRight 0.8s ease;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.contact-item {
+    color: var(--white);
+    text-align: right;
+}
+
+.contact-item strong {
+    display: block;
+    font-size: 0.85em;
+    opacity: 0.9;
+    margin-bottom: 2px;
+}
+
+/* Navigation Styles */
+.nav-wrapper {
+    background: var(--dark-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    display: block;
+    padding: 18px 25px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 3px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+nav ul li a:hover,
+nav ul li.active a {
+    background: rgba(255,255,255,0.1);
+    color: var(--accent-color);
+}
+
+nav ul li a:hover::after,
+nav ul li.active a::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* Dropdown Menu */
+nav ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--dark-color);
+    min-width: 250px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border-radius: 0 0 8px 8px;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav ul li:hover > ul {
+    display: flex;
+}
+
+nav ul li ul li a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul li ul li:last-child a {
+    border-bottom: none;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/demo/backgrounds/01.jpg') center/cover;
+    animation: zoomBackground 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes zoomBackground {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hero-content {
+    position: absolute;
+    top: 60px;
+    left: 40px;
+    color: var(--white);
+    z-index: 2;
+    animation: fadeInUp 1s ease;
+    max-width: 350px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content p {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.9;
+}
+
+.hero-content h2 {
+    font-size: 2em;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    animation: pulse 2s infinite;
+    line-height: 1.3;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Main Content */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.intro-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 80px;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.intro-left h6 {
+    color: var(--primary-color);
+    font-size: 1.6em;
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+.intro-left p {
+    color: #333;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.intro-right p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Services Section */
+.services-section {
+    background: var(--light-color);
+    padding: 80px 0;
+    margin: 0 -40px;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.section-title h4 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h4::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.section-title p {
+    color: #666;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    animation: fadeInUp 0.8s ease;
+    animation-fill-mode: both;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+
+.service-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.service-image {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.2);
+}
+
+.ship-animation {
+    animation: shipFloat 3s ease-in-out infinite, zoomIn 1s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shipFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
+}
+
+.service-content {
+    padding: 30px;
+}
+
+.service-content h6 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+.service-content p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    transition: var(--transition);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.btn:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+.footer-wrapper {
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+    color: var(--white);
+    padding: 60px 0 30px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h6 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.footer-section ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.footer-section a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: var(--white);
+    padding-left: 5px;
+}
+
+.motto-text {
+    font-size: 1.6em;
+    font-style: italic;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.copyright {
+    background: rgba(0,0,0,0.3);
+    padding: 20px 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+}
+
+.copyright a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Back to Top Button */
+#backtotop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+}
+
+#backtotop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backtotop:hover {
+    background: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo-container h1 {
+        font-size: 1.3em;
+    }
+
+    .contact-info {
+        gap: 15px;
+        font-size: 0.9em;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 12px 20px;
+    }
+
+    .hero-content {
+        left: 20px;
+        top: 40px;
+        max-width: 280px;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5em;
+    }
+
+    .intro-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .content-wrapper {
+        padding: 0 20px;
+    }
+}
+
+/* Loading Animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Smooth scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+<body id="top">
+
+<!-- Header -->
+<div class="header-wrapper">
+    <header>
+        <div class="logo-container">
+            <img src="images/demo/11.png" alt="Black Sea Shipping Company Logo" class="logo-img">
+            <h1>Black Sea Shipping Company</h1>
+        </div>
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Contact:</strong>
+                +44 2590 1842
+            </div>
+            <div class="contact-item">
+                <strong>Mobile:</strong>
+                +91 9940618251
+            </div>
+        </div>
+    </header>
+</div>
+
+<!-- Navigation -->
+<div class="nav-wrapper">
+    <nav>
+        <ul>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="pages/about.html">About us</a></li>
+            <li><a href="pages/services.html">Services</a></li>
+            <li><a href="pages/grcompany.html">GR Companies</a></li>
+            <li class="has-dropdown">
+                <a href="#">Container Track</a>
+                <ul>
+                    <li><a href="https://www.msc.com/track-a-shipment?agencyPath=ind">MSC CNTR track</a></li>
+                    <li><a href="https://www.maerskline.com/en/routes/track-shipments">Maerskline CNTR track</a></li>
+                    <li><a href="http://www.bltracking.com/container/tsl.html">TS lines CNTR track</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">Resources</a>
+                <ul>
+                    <li><a href="https://www.oanda.com/currency/converter/">Currency Conversion</a></li>
+                    <li><a href="pages/cntrspec.html">Container Specification</a></li>
+                </ul>
+            </li>
+            <li><a href="/cdn-cgi/l/email-protection#6b09070a0800180e0a1803021b08042b0c060a020745080406">Mail us</a></li>
+            <li><a href="pages/contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="hero-content">
+        <p>Motto:</p>
+        <h2>Right People Right Choice</h2>
+    </div>
+</div>
+
+<!-- Company Introduction -->
+<div class="content-wrapper">
+    <section class="intro-section">
+        <div class="intro-left">
+            <p>presenting premium services in</p>
+            <h6>International freight forwarding, shipping and clearing agents.</h6>
+        </div>
+        <div class="intro-right">
+            <p>Black Sea Shipping Company is one of the most reckoned names offering forwarding, custom clearance, air & sea cargo shipping agent, warehousing and the logistics services. We laid the foundation of our company in the year 1997 with a vision to become market leaders in the logistics field.</p>
+            <p>Today, we are a well known name in this service and this has been made possible by the quality of service we offer.</p>
+            <p>Black Sea Shipping Company is a privately owned international freight forwarder and logistics provider. During its thirty-plus year history, we have experienced exponential growth based on the vision and energy of its founder Mr. A.M. RAJA, who today remains Chairman, and we have built a global network of quality offices that deliver a consistent level of high service and performance to its customers.</p>
+        </div>
+    </section>
+</div>
+
+<!-- Services Section -->
+<div class="services-section">
+    <div class="services-container">
+        <div class="section-title">
+            <h4>Our Main Services</h4>
+            <p>With an experience of more than a decade, we offer...</p>
+        </div>
+        
+        <div class="services-grid">
+            <article class="service-card reveal">
+                <div class="service-image">
+                    <img src="images/demo/03.png" alt="Air Freight Services">
+                </div>
+                <div class="service-content">
+                    <h6>Air Freight</h6>
+                    <p>Air freight parcel delivery is the transfer and shipment of goods via an air carrier. Such shipments travel out of commercial and passenger aviation gateways to anywhere planes can fly.</p>
+                    <a href="pages/services.html" class="btn">Read More</a>
+                </div>
+            </article>
+            
+            <article class="service-card reveal">
+                <div class="service-image">
+                    <img src="images/demo/04.jpg" alt="Sea Freight Services" class="ship-animation">
+                </div>
+                <div class="service-content">
+                    <h6>Sea Freight</h6>
+                    <p>The modern terms short sea shipping, marine highway and motorways of the sea refer to the historical terms coastal trade, coastal shipping. Sea freight is the transportation of goods into sea containers.</p>
+                    <a href="pages/services.html" class="btn">Read More</a>
+                </div>
+            </article>
+            
+            <article class="service-card reveal">
+                <div class="service-image">
+                    <img src="images/demo/05.jpg" alt="Break Bulk Services">
+                </div>
+                <div class="service-content">
+                    <h6>Break Bulk</h6>
+                    <p>Break bulk cargo are goods that must be loaded individually, not in bulk as with oil or grain. Ships that carry this sort of cargo are called general cargo ships. Break bulk cargo is transported in bags, boxes.</p>
+                    <a href="pages/services.html" class="btn">Read More</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-wrapper">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h6>Be in touch with us</h6>
+            <ul>
+                <li>No-24, 'A' Block Classic Appartment, Cementry, Chennai-600 021.</li>
+                <li>Phone: 44 2590 1842</li>
+                <li>Email: <a href="mailto:blackseashipco@gmail.com">blackseashipco@gmail.com</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h6>Our Services</h6>
+            <ul>
+                <li><a href="#">Customs Brokers</a></li>
+                <li><a href="#">International Freight Forwards</a></li>
+                <li><a href="#">Logistics Services</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h6 class="motto-text">"Right People Right Choice"</h6>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>Copyright &copy; 2026 - All Rights Reserved - Black Sea Shipping Company | Site developed and maintained by Nancy Mary R</p>
+    </div>
+</div>
+
+<!-- Back to Top Button -->
+<a id="backtotop" href="#top">↑</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Smooth scroll reveal animation
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+reveal(); // Check on load
+
+// Back to top button
+window.addEventListener('scroll', function() {
+    const backToTop = document.getElementById('backtotop');
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+//
